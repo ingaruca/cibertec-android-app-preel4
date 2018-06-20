@@ -1,5 +1,6 @@
 package com.example.ingarukal11.preel4;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
         btnGrabar = (Button)findViewById(R.id.btnGrabar);
         btnEliminar = (Button)findViewById(R.id.btnEliminar);
         btnListar = (Button)findViewById(R.id.btnListar);
+
+        btnListar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), ListActivity.class);
+                startActivity(i);
+            }
+        });
 
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         URL url = null;
 
         try{
-            url = new URL("http://192.168.1.17/serviciosAndroid/registrarCliente.php?id="+cliente.getIdCliente()+"&apellidos="+
+            url = new URL("http://192.168.1.21/serviciosAndroid/registrarCliente.php?id="+cliente.getIdCliente()+"&apellidos="+
                     cliente.getApellidos()+"&nombres="+cliente.getNombres()+"&edad="+cliente.getEdad()+"&sexo="+cliente.getSexo());
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             connection.getResponseCode();
@@ -151,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         URL url = null;
 
         try{
-            url = new URL("http://192.168.1.17/serviciosAndroid/editarCliente.php?id="+cliente.getIdCliente()+"&apellidos="+
+            url = new URL("http://192.168.1.21/serviciosAndroid/editarCliente.php?id="+cliente.getIdCliente()+"&apellidos="+
                     cliente.getApellidos()+"&nombres="+cliente.getNombres()+"&edad="+cliente.getEdad()+"&sexo="+cliente.getSexo());
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             connection.getResponseCode();
@@ -164,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         URL url = null;
 
         try{
-            url = new URL("http://192.168.1.17/serviciosAndroid/eliminarCliente.php?id="+id);
+            url = new URL("http://192.168.1.21/serviciosAndroid/eliminarCliente.php?id="+id);
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             connection.getResponseCode();
         }catch(Exception e){
@@ -179,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder resul = null;
 
         try{
-            url = new URL("http://192.168.1.17/serviciosAndroid/consultaCliente.php?id="+id);
+            url = new URL("http://192.168.1.21/serviciosAndroid/consultaCliente.php?id="+id);
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             respuesta = connection.getResponseCode();
 
